@@ -1,0 +1,38 @@
+.btn:focus, .btn-primary:focus:active{
+    outline: none;
+}
+
+.invalidField{
+    background-color: #ff000080;
+}
+
+.form-control::placeholder{
+    color:black;
+}
+
+/* #new-user-title{
+    display: initial;
+}
+
+#new-user-title{
+    display: none;
+} */
+
+.visible{
+    display: initial;
+}
+
+::-webkit-scrollbar{
+    width: 10px;
+    height: 20px;
+
+}
+  
+::-webkit-scrollbar-thumb{
+    background-color: orange;
+    border-radius: 1em;
+}
+  
+::-webkit-scrollbar-track{
+    background-color: white;
+}
