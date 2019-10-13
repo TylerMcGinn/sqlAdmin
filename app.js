@@ -3,9 +3,10 @@ import Validation from './Lib/Validation.js';
 import Modal from './Lib/Modal.js';
 
 
-//initialize bootstrap tooltips
+//initialize database, eventlisteners and bootstrap tooltips
 $(document).ready(function(){
     $("[data-toggle='tooltip']").tooltip();
+    DB_Request.getAllUsers();
     DB_Request.attatchEventListeners();
 });
 
@@ -18,9 +19,27 @@ $('#add-user-modal-btn').click(function(){
 
 //Update selected user
 $('#update-user-btn').click(function(e){
-    // let fields = $('.form-field');
-    // console.log(fields);
+    let formData = $('#newUserForm').serializeArray();
+    if(Validation.entriesValid(formData)){
+        DB_Request.updateUser(formData);
+    }
+});
 
+
+//Delete selected user
+$('#delete-user-btn').click(function(){
+    DB_Request.deleteUser();
+});
+
+
+$('#close-modal-btn').click(function(){
+    DB_Request.unsetSelectedUserState();
+});
+
+
+//close message
+$('#close-message').click(function(){
+   $('#message').addClass('fade').alert('close'); 
 });
 
 
@@ -49,7 +68,6 @@ $('#phone').keyup(function(e){
 
 // new user form validation and submit.
 $('#add-user-btn').click(function(e){
-    e.preventDefault();
     let formData = $('#newUserForm').serializeArray();
     if(Validation.entriesValid(formData)){
         DB_Request.addNewUser(formData);

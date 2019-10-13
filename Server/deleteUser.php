@@ -11,7 +11,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     }
     else{
         $delete = "DELETE FROM users WHERE id = $_POST[id]";
-        echo $connection->query($delete) ? 'true' : 'false';
+        echo ($connection->query($delete) == TRUE) ? 'success' : $connection->error;
     }
     $connection->close();
 }

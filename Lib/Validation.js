@@ -1,4 +1,5 @@
 export default class Validation{
+    
     static removeWarnings(focusedField){
         if($(focusedField).hasClass('invalidField')){
             $(focusedField).removeClass('invalidField').removeAttr('placeholder');

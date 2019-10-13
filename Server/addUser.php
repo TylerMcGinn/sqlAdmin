@@ -16,7 +16,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
                    (first_name, last_name, dob, address, phone, email) 
                    VALUES 
                    ('$newUser->first_name', '$newUser->last_name', '$newUser->dob', '$newUser->address', '$newUser->phone', '$newUser->email')";
-        echo $connection->query($insert) ? 'true' : $connection->error;
+        echo ($connection->query($insert) == TRUE) ? 'success' : $connection->error;
     }
     $connection->close();
 }

@@ -1,7 +1,7 @@
 <?php
 class User{
-    function sanitize($_param){
 
+    function sanitize($_param){
         $sanitized_param = stripslashes($_param);
         $sanitized_param = str_replace("'", "\'", $sanitized_param);
         $sanitized_param = trim($sanitized_param);

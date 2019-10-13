@@ -1,6 +1,15 @@
-import Modal from './Modal.js.js';
+import Modal from './Modal.js';
 
 export default class DB_Request{
+
+    static selectedUserState = { name:'id', value:null };
+
+
+    static unsetSelectedUserState(){
+        this.selectedUserState = { name:'id', value:null };
+    }
+
+
     static searchUsers(query){
         if($('#searchUsers').val() != ''){
             $.ajax({
@@ -43,8 +52,44 @@ export default class DB_Request{
             url:"./Server/addUser.php",
             data:formData,
             success:function(res){
-                console.log(res);
-                
+                res == "success" ? Modal.alertMessage("Success","User added successfully", "alert-success")
+                                 : Modal.alertMessage("Error", res, "alert-danger");
+            }
+        });
+        $('#userAdmin').modal('hide');
+        setTimeout(() => {
+            this.getAllUsers();
+        }, 500);
+    }
+
+
+    static updateUser(formData){
+        formData.unshift(this.selectedUserState);
+        console.log(formData);
+        $.ajax({
+            method:'POST',
+            url:'./Server/updateUser.php',
+            data:formData,
+            success:function(res){
+                res == "success" ? Modal.alertMessage("Success","User updated successfully", "alert-success")
+                                 : Modal.alertMessage("Error", res, "alert-danger");
+            }
+        });
+        $('#userAdmin').modal('hide');
+        setTimeout(() => {
+            this.getAllUsers();
+        }, 500);
+    }
+
+
+    static deleteUser(){
+        $.ajax({
+            method:'POST',
+            url:'./Server/deleteUser.php',
+            data:[this.selectedUserState],
+            success:function(res){
+                res == "success" ? Modal.alertMessage("Success","User deleted successfully", "alert-success")
+                                 : Modal.alertMessage("Error", res, "alert-danger");
             }
         });
         $('#userAdmin').modal('hide');

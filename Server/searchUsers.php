@@ -15,7 +15,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $select = "SELECT * FROM users WHERE POSITION('$search_param' IN $search_filter)";
         $result = $connection->query($select);
         while($row = $result->fetch_assoc()){
-            echo    "<tr>
+            echo    "<tr style='cursor:pointer;'>
                         <td class='id'>$row[id]</td>
                         <td class='first_name'>$row[first_name]</td>
                         <td class='last_name'>$row[last_name]</td>

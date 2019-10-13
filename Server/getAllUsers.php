@@ -13,7 +13,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
         $select_all = "SELECT * FROM users";
         $result = $connection->query($select_all);
         while($row = $result->fetch_assoc()){
-            echo    "<tr>
+            echo    "<tr style='cursor:pointer;'>
                         <td class='id'>$row[id]</td>
                         <td class='first_name'>$row[first_name]</td>
                         <td class='last_name'>$row[last_name]</td>
